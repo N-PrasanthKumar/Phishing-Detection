@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <title>Phishing URL Detection</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="w-100" style="max-width: 600px;">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="text-center">PHISHING URL DETECTION</h2>
+                    <br>
+                    <form action="/" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="url" id="url" placeholder="Enter URL" required>
+                        </div>
+                        <button class="btn btn-primary btn-block">Check here</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card shadow mt-4">
+                <div class="card-body text-center">
+                    <h6>
+                        <a href="{{ url }}" target="_blank" class="text-primary">{{ url }}</a>
+                    </h6>
+                    <h3 id="prediction" class="mt-3"></h3>
+                    <div class="mt-4">
+                        <button id="button2" class="btn btn-danger d-none" onclick="window.open('{{url}}')" target="_blank">
+                            Still want to Continue
+                        </button>
+                        <button id="button1" class="btn btn-success d-none" onclick="window.open('{{url}}')" target="_blank">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <script>
+        let x = '{{xx}}';
+        let num = x * 100;
+        if (0 <= x && x < 0.50) {
+            num = 100 - num;
+        }
+        let txtx = num.toString();
+        if (x <= 1 && x >= 0.50) {
+            var label = "Website is " + txtx + "% safe to use...";
+            document.getElementById("prediction").innerHTML = label;
+            document.getElementById("button1").classList.remove("d-none");
+        } else if (0 <= x && x < 0.50) {
+            var label = "Website is " + txtx + "% unsafe to use...";
+            document.getElementById("prediction").innerHTML = label;
+            document.getElementById("button2").classList.remove("d-none");
+        }
+    </script>
+</body>
+</html>
